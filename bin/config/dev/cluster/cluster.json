@@ -1,0 +1,13 @@
+{
+    "NodeList": [
+        {
+            "NodeId": "OriginMahjong",
+            "Private": false,
+            "ListenAddr": "0.0.0.0:11000",
+            "MaxRpcParamLen": 409600,
+            "CompressBytesLen": 20480,
+            "remark": "//以_打头的，表示只在本机进程，不对整个子网开发",
+            "ServiceList": ["LoginService"]
+        }
+    ]
+}

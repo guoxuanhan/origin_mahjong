@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package common;
+option go_package = ".;common";
+
+// 错误码
+enum ErrorCode {
+  OK                                      = 0;
+  ERR_Internal                            = 1; // 内部错误
+  ERR_Token                               = 2; // token验证错误
+  ERR_ConnectExceeded                     = 3; // 超过最大连接数
+  ERR_RepeatedRequest                     = 4; // 重复请求
+  ERR_AccountOrPassword                   = 5; // 账号或密码错误
+}

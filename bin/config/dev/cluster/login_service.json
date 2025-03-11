@@ -1,0 +1,7 @@
+{
+  "Service": {
+    "LoginService": {
+      "ListenPort": ":9000"
+    }
+  }
+}

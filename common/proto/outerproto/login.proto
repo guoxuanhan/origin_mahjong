@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package outer;
+option go_package = ".;outer";
+
+// 登录状态
+enum LoginStatus {
+  Loginning   = 0;
+  Logined     = 1;
+  Logouting   = 2;
+  Logouted    = 3;
+}
+
+// 登录类型
+enum LoginType {
+  Guest     = 0;
+  Account   = 1;
+  Max       = 2;
+}
+
+// client->login 请求登录
+message C2L_LoginRequest {
+  LoginType LoginType = 1;
+  string Account = 2;
+  string Password = 3;
+}
+
+// login->client 请求登录
+message L2C_LoginResponse {
+  int32 Error = 1;
+  string Message = 2;
+  string Token = 3;
+}
