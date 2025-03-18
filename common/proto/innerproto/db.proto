@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package inner;
+option go_package=".;inner";
+
+// DB操作码
+enum DBOperationType {
+  None                = 0;
+  Find                = 1;
+  FindMany            = 2;
+  Update              = 4;
+  UpdateMany          = 8;
+  Delete              = 16;
+  DeleteMany          = 32;
+  Redis_SetKey        = 64;
+  Redis_GetKey        = 128;
+  Redis_DelKey        = 256;
+}
+
+message DBCtrlRequest {
+  DBOperationType OPType = 1;
+  string key = 2;
+  string collectName = 3;
+  bytes condition = 4;
+  repeated bytes data = 5;
+}
+
+message DBCtrlResponse {
+  DBOperationType OPType = 1;
+  repeated bytes result = 2;
+  int64 MatchedCount = 3;
+  int64 ModifiedCount = 4;
+  int64 UpsertedCount = 5;
+  int64 DeletedCount = 6;
+  int64 DocumentCount = 7;
+}
+
+message DBRedisCtrlRequest {
+  DBOperationType OPType = 1;
+  uint64 modKey = 2;
+  repeated string redisKey = 3;
+  repeated bytes data = 4;
+}
+
+message DBRedisCtrlResponse {
+  int32 Ret = 1;
+  repeated string redisKey = 2;
+  repeated bytes data = 3;
+}

@@ -1,15 +1,15 @@
 package loginservice
 
 import (
-	"github.com/duanhf2012/origin/v2/log"
-	"github.com/gin-gonic/gin/binding"
 	"net/http"
 	"origin_mahjong/common/proto/common"
 	"origin_mahjong/common/proto/outer"
 	"time"
 
+	"github.com/duanhf2012/origin/v2/log"
 	"github.com/duanhf2012/origin/v2/service"
 	"github.com/duanhf2012/origin/v2/sysmodule/netmodule/ginmodule"
+	"github.com/gin-gonic/gin/binding"
 )
 
 type GateStatus int
@@ -43,7 +43,7 @@ func (login *LoginModule) OnRelease() {
 // Login 客户端登录逻辑
 func (login *LoginModule) Login(c *ginmodule.SafeContext) {
 	var loginRequest outer.C2L_LoginRequest
-	loginResponse := outer.L2C_LoginResponse{}
+	loginResponse := &outer.L2C_LoginResponse{}
 	err := c.ShouldBindBodyWith(&loginRequest, binding.JSON)
 	if err != nil {
 		loginResponse.Error = int32(common.ErrorCode_ERR_AccountOrPassword)
@@ -64,4 +64,5 @@ func (login *LoginModule) Login(c *ginmodule.SafeContext) {
 		c.JSONAndDone(http.StatusBadRequest, loginResponse)
 		return
 	}
+
 }

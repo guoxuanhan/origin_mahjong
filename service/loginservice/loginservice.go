@@ -22,13 +22,19 @@ type LoginService struct {
 func (ls *LoginService) OnInit() error {
 	// 解析配置文件
 	var config struct {
-		ListenPort string
+		ListenPort        string
+		MinGoroutineNum   int32
+		MaxGoroutineNum   int32
+		MaxTaskChannelNum int
 	}
 
 	err := ls.ParseServiceCfg(&config)
 	if err != nil {
 		return err
 	}
+
+	// 打开并发协程模式
+	ls.OpenConcurrent(config.MinGoroutineNum, config.MaxGoroutineNum, config.MaxTaskChannelNum)
 
 	// 添加gin模块
 	ls.ginModule.Init(config.ListenPort, time.Second*15, nil)

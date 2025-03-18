@@ -1,0 +1,10 @@
+{
+  "Service": {
+    "LoginService": {
+      "ListenPort": ":9000",
+      "MinGoroutineNum": 10,
+      "MaxGoroutineNum": 100,
+      "MaxTaskChannelNum": 100
+    }
+  }
+}

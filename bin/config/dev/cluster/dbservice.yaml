@@ -1,0 +1,10 @@
+Service:
+  DBService:
+    Url: mongodb://admin:123456@127.0.0.1/?minPoolSize=5&maxPoolSize=35&maxIdleTimeMS=30000
+    DBName: GameDB1
+    GoroutineNum: 5
+    ChannelNum: 100000
+#    SlowQueryTime: 500
+#    CacheCompress: true
+#    MaxCacheCapacity: 100000
+
